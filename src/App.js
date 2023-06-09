@@ -1,7 +1,6 @@
 // REACT THREE FIBER WAY
 
 import { Suspense, useRef } from "react";
-// import { useRef } from "react";
 import { Canvas, useLoader, useFrame } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import {
@@ -33,8 +32,8 @@ function App() {
   return (
     <Canvas style={{ height: "100vh" }}>
       <Suspense fallback={<Loader />}>
-        <pointLight color="orange" position={[10, 10, 10]} />
-        <FreeFarm position={[0, 0, 0]} scale={0.05} rotation-x={1} />
+        <pointLight color="blue" position={[10, 10, 10]} />
+        <FreeFarm position={[-5, -5, -5]} scale={0.01} rotation-x={1} />
         <OrbitControls
           enableZoom={true}
           rotateSpeed={2}
