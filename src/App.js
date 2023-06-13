@@ -19,8 +19,8 @@ const FreeFarm = (args) => {
   const farmRef = useRef();
   useFrame(() => {
     if (farmRef.current) {
-      farmRef.current.rotation.x += 0.05;
-      farmRef.current.rotation.y += 0.1;
+      farmRef.current.rotation.x += 0.0;
+      farmRef.current.rotation.y += 0.0;
       farmRef.current.position.z = (farmRef.currentposition.z + 0.01) % 10;
     }
   });
@@ -33,12 +33,14 @@ function App() {
     <Canvas style={{ height: "100vh" }}>
       <Suspense fallback={<Loader />}>
         <pointLight color="blue" position={[10, 10, 10]} />
-        <FreeFarm position={[-5, -5, -5]} scale={0.01} rotation-x={1} />
+        <FreeFarm position={[-5, -5, -15]} scale={0.02} rotation-x={0} />
         <OrbitControls
           enableZoom={true}
-          rotateSpeed={2}
+          enablePan={true}
+          rotateSpeed={1}
           autoRotate={true}
-          autoRotateSpeed={1}
+          autoRotateSpeed={2}
+          enableDamping={true}
         />
         <Environment preset="park" background />
       </Suspense>
@@ -48,6 +50,57 @@ function App() {
 
 export default App;
 
+// WAY 1:
+
+// import { Suspense, useRef } from "react";
+// import { Canvas, useLoader, useFrame } from "@react-three/fiber";
+// import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+// import {
+//   Environment,
+//   Html,
+//   OrbitControls,
+//   useProgress,
+// } from "@react-three/drei";
+
+// function Loader() {
+//   const { progress } = useProgress();
+//   return <Html center>{progress} % loaded</Html>;
+// }
+
+// const FreeFarm = (args) => {
+//   const farmRef = useRef();
+//   useFrame(() => {
+//     if (farmRef.current) {
+//       farmRef.current.rotation.x += 0.05;
+//       farmRef.current.rotation.y += 0.1;
+//       farmRef.current.position.z = (farmRef.currentposition.z + 0.01) % 10;
+//     }
+//   });
+//   const gltf = useLoader(GLTFLoader, "./london-model/scene.gltf");
+//   return <primitive object={gltf.scene} {...args} />;
+// };
+
+// function App() {
+//   return (
+//     <Canvas style={{ height: "100vh" }}>
+//       <Suspense fallback={<Loader />}>
+//         <pointLight color="blue" position={[10, 10, 10]} />
+//         <FreeFarm position={[-5, -5, -5]} scale={0.01} rotation-x={1} />
+//         <OrbitControls
+//           enableZoom={true}
+//           rotateSpeed={2}
+//           autoRotate={true}
+//           autoRotateSpeed={1}
+//         />
+//         <Environment preset="park" background />
+//       </Suspense>
+//     </Canvas>
+//   );
+// }
+
+// export default App;
+
+//METHOD 2
 // import { useEffect, useRef } from "react";
 // import { Suspense } from "react";
 // import { canvas, useLoader } from "@react-three/fiber";
