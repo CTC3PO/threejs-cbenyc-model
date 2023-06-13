@@ -9,6 +9,7 @@ import {
   OrbitControls,
   useProgress,
 } from "@react-three/drei";
+import { Camera } from "three";
 
 function Loader() {
   const { progress } = useProgress();
@@ -41,7 +42,11 @@ function App() {
           autoRotate={true}
           autoRotateSpeed={2}
           enableDamping={true}
+          dampingFactor={0.1}
+          minPolarAngle={Math.PI / 6}
+          maxPolarAngle={Math.PI / 2}
         />
+
         <Environment preset="park" background />
       </Suspense>
     </Canvas>
