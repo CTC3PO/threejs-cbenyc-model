@@ -20,8 +20,8 @@ const FreeFarm = (args) => {
   const farmRef = useRef();
   useFrame(() => {
     if (farmRef.current) {
-      farmRef.current.rotation.x += 0.0;
-      farmRef.current.rotation.y += 0.0;
+      farmRef.current.rotation.x += 0.05;
+      farmRef.current.rotation.y += 0.1;
       farmRef.current.position.z = (farmRef.currentposition.z + 0.01) % 10;
     }
   });
@@ -33,7 +33,7 @@ function App() {
   return (
     <Canvas style={{ height: "100vh" }}>
       <Suspense fallback={<Loader />}>
-        <pointLight color="blue" position={[10, 10, 10]} />
+        <pointLight color="#83c2f2" position={[5, 5, 5]} />
         <FreeFarm position={[-5, -5, -15]} scale={0.02} rotation-x={0} />
         <OrbitControls
           enableZoom={true}
