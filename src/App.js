@@ -2,6 +2,7 @@
 
 import { Suspense, useRef } from "react";
 import { Canvas, useLoader, useFrame } from "@react-three/fiber";
+
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import {
   Environment,
@@ -16,13 +17,13 @@ function Loader() {
   return <Html center>{progress} % loaded</Html>;
 }
 
-const FreeFarm = (args) => {
-  const farmRef = useRef();
+const SimpleModel = (args) => {
+  const modelRef = useRef();
   useFrame(() => {
-    if (farmRef.current) {
-      farmRef.current.rotation.x += 0.05;
-      farmRef.current.rotation.y += 0.1;
-      farmRef.current.position.z = (farmRef.currentposition.z + 0.01) % 10;
+    if (modelRef.current) {
+      modelRef.current.rotation.x += 0.05;
+      modelRef.current.rotation.y += 0.1;
+      modelRef.current.position.z = (modelRef.currentposition.z + 0.01) % 10;
     }
   });
   const gltf = useLoader(GLTFLoader, "./london-model/scene.gltf");
@@ -34,13 +35,13 @@ function App() {
     <Canvas style={{ height: "100vh" }}>
       <Suspense fallback={<Loader />}>
         <pointLight color="#83c2f2" position={[5, 5, 5]} />
-        <FreeFarm position={[-5, -5, -15]} scale={0.02} rotation-x={0} />
+        <SimpleModel position={[-5, -5, -15]} scale={0.02} rotation-x={0} />
         <OrbitControls
           enableZoom={true}
           enablePan={true}
-          rotateSpeed={1}
+          rotateSpeed={0.3}
           autoRotate={true}
-          autoRotateSpeed={2}
+          autoRotateSpeed={0.7}
           enableDamping={true}
           dampingFactor={0.1}
           minPolarAngle={Math.PI / 6}
@@ -73,12 +74,12 @@ export default App;
 // }
 
 // const FreeFarm = (args) => {
-//   const farmRef = useRef();
+//   const modelRef = useRef();
 //   useFrame(() => {
-//     if (farmRef.current) {
-//       farmRef.current.rotation.x += 0.05;
-//       farmRef.current.rotation.y += 0.1;
-//       farmRef.current.position.z = (farmRef.currentposition.z + 0.01) % 10;
+//     if (modelRef.current) {
+//       modelRef.current.rotation.x += 0.05;
+//       modelRef.current.rotation.y += 0.1;
+//       modelRef.current.position.z = (modelRef.currentposition.z + 0.01) % 10;
 //     }
 //   });
 //   const gltf = useLoader(GLTFLoader, "./london-model/scene.gltf");
