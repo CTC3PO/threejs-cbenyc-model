@@ -35,13 +35,13 @@ function App() {
     <Canvas style={{ height: "100vh" }}>
       <Suspense fallback={<Loader />}>
         <pointLight color="#83c2f2" position={[5, 5, 5]} />
-        <SimpleModel position={[-5, -5, -15]} scale={0.02} rotation-x={0} />
+        <SimpleModel position={[-5, -5, -15]} scale={0.025} rotation-x={0} />
         <OrbitControls
           enableZoom={true}
           enablePan={true}
           rotateSpeed={0.3}
           autoRotate={true}
-          autoRotateSpeed={0.7}
+          autoRotateSpeed={0.5}
           enableDamping={true}
           dampingFactor={0.1}
           minPolarAngle={Math.PI / 6}
