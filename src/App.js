@@ -26,7 +26,7 @@ const SimpleModel = (args) => {
       modelRef.current.position.z = (modelRef.currentposition.z + 0.01) % 10;
     }
   });
-  const gltf = useLoader(GLTFLoader, "./london-model/scene.gltf");
+  const gltf = useLoader(GLTFLoader, "./cbe/cbe-model.glb");
   return <primitive object={gltf.scene} {...args} />;
 };
 
@@ -40,7 +40,7 @@ function App() {
           enableZoom={true}
           enablePan={true}
           rotateSpeed={0.3}
-          autoRotate={true}
+          autoRotate={false}
           autoRotateSpeed={0.5}
           enableDamping={true}
           dampingFactor={0.1}
